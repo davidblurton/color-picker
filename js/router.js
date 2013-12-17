@@ -4,8 +4,9 @@ define([
   'underscore',
   'backbone',
   'views/picker/SliderView',
-  'models/colour/ColourModel'
-], function ($, _, Backbone, SliderView, ColourModel) {
+  'models/colour/ColourModel',
+  'views/picker/ColourTextboxView'
+], function ($, _, Backbone, SliderView, ColourModel, ColourTextboxView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -24,6 +25,12 @@ define([
         model: redModel
       });
       sliderView.render();
+
+      var colourTextbox = new ColourTextboxView({
+        model: redModel
+      });
+
+      colourTextbox.render().$el.appendTo('#colourTextboxes');
     });
 
     Backbone.history.start();
