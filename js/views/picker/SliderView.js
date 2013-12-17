@@ -24,10 +24,6 @@ define([
       "change": "setValue"
     },
 
-    render: function () {
-      return this;
-    },
-
     setValue: function (e) {
       this.model.set(this.colour, e.target.value);
     }
