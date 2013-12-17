@@ -9,7 +9,7 @@ define([
     el: $("#page"),
 
     events: {
-      "change #red-slider": "redSlider",
+      "change #red-slider": "setRedValue",
     },
 
     render: function () {
@@ -17,8 +17,8 @@ define([
       return this;
     },
 
-    redSlider: function(e) {
-      console.log(e.target.value);
+    setRedValue: function(e) {
+      this.model.set("red", e.target.value);
     }
   });
 
