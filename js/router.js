@@ -20,17 +20,32 @@ define([
     var app_router = new AppRouter();
 
     app_router.on('route:defaultAction', function (actions) {
-      var redModel = new ColourModel();
-      var sliderView = new SliderView({
-        model: redModel
+      var colourModel = new ColourModel();
+      var redSliderView = new SliderView({
+        model: colourModel,
+        colour: "red"
       });
-      sliderView.render();
+      redSliderView.render().$el.appendTo('#page');
 
-      var colourTextbox = new ColourTextboxView({
-        model: redModel
+      var blueSliderView = new SliderView({
+        model: colourModel,
+        colour: "blue"
+      });
+      blueSliderView.render().$el.appendTo('#page');
+
+      var redTextbox = new ColourTextboxView({
+        model: colourModel,
+        colour: "red"
       });
 
-      colourTextbox.render().$el.appendTo('#colourTextboxes');
+      var blueTextbox = new ColourTextboxView({
+        model: colourModel,
+        colour: "blue"
+      });
+
+      redTextbox.render().$el.appendTo('#colourTextboxes');
+      blueTextbox.render().$el.appendTo('#colourTextboxes');
+
     });
 
     Backbone.history.start();

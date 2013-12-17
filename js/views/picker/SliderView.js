@@ -6,19 +6,30 @@ define([
 ], function ($, _, Backbone, homeTemplate) {
 
   var SliderView = Backbone.View.extend({
-    el: $("#page"),
+    tagName: "input",
+
+    id: this.colour + "-slider",
+
+    attributes: {
+      "min": 0,
+      "max": 255,
+      "type": "range"
+    },
+
+    initialize: function (options) {
+      this.colour = options.colour;
+    },
 
     events: {
-      "change #red-slider": "setRedValue",
+      "change": "setValue"
     },
 
     render: function () {
-      this.$el.html(homeTemplate);
       return this;
     },
 
-    setRedValue: function(e) {
-      this.model.set("red", e.target.value);
+    setValue: function (e) {
+      this.model.set(this.colour, e.target.value);
     }
   });
 
