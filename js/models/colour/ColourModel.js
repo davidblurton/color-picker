@@ -4,8 +4,10 @@ define([
 ], function(_, Backbone) {
 
   var ColourModel = Backbone.Model.extend({
-    default: {
-      red: 0
+    defaults: {
+      "red": 255,
+      "green": 255,
+      "blue": 0
     }
   });
 

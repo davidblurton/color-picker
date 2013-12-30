@@ -14,9 +14,8 @@ define([
 
     render: function () {
       var redValue = this.model.get('red');
+      var greenValue = this.model.get('green');
       var blueValue = this.model.get('blue');
-      var greenValue = '255';
-    
       this.$el.css('background-color', 'rgb(' + redValue + ',' + greenValue + ',' + blueValue + ')' );
       return this;
     }

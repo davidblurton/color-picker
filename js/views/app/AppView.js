@@ -24,7 +24,22 @@ define([
         model: colourModel,
         colour: "red"
       });
+      redTextbox.render().$el.appendTo(target);
+      
+      // green
+      var greenSliderView = new SliderView({
+        model: colourModel,
+        colour: "green"
+      });
+      greenSliderView.render().$el.appendTo(target);
 
+      var greenTextbox = new ColourTextboxView({
+        model: colourModel,
+        colour: "green"
+      });
+      greenTextbox.render().$el.appendTo(target);
+
+      //blue
       var blueSliderView = new SliderView({
         model: colourModel,
         colour: "blue"
@@ -36,9 +51,8 @@ define([
         colour: "blue"
       });
 
-      redTextbox.render().$el.appendTo(target);
       blueTextbox.render().$el.appendTo(target);
-      
+
       var swatch = new SwatchView({
         model: colourModel
       });

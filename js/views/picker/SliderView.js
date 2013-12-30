@@ -18,6 +18,9 @@ define([
 
     initialize: function (options) {
       this.colour = options.colour;
+      
+      // set slider initial value to model default
+      this.$el.attr("value", this.model.get(this.colour));
     },
 
     events: {

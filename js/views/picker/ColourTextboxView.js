@@ -18,11 +18,12 @@ define([
     initialize: function (options) {
       this.colour = options.colour;
       this.listenTo(this.model, "change", this.render);
+      this.render();
     },
 
     render: function () {
-      var redValue = this.model.get(this.colour);
-      this.$el.val(redValue);
+      var colorValue = this.model.get(this.colour);
+      this.$el.val(colorValue);
       return this;
     }
   });
