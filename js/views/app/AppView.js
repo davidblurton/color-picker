@@ -4,8 +4,9 @@ define([
   'backbone',
   'views/picker/SliderView',
   'models/colour/ColourModel',
-  'views/picker/ColourTextboxView'
-], function ($, _, Backbone, SliderView, ColourModel, ColourTextboxView) {
+  'views/picker/ColourTextboxView',
+  'views/picker/SwatchView'
+], function ($, _, Backbone, SliderView, ColourModel, ColourTextboxView, SwatchView) {
 
   var AppView = Backbone.View.extend({
     render: function () {
@@ -37,6 +38,11 @@ define([
 
       redTextbox.render().$el.appendTo(target);
       blueTextbox.render().$el.appendTo(target);
+      
+      var swatch = new SwatchView({
+        model: colourModel
+      });
+      swatch.render().$el.appendTo(target);
     }
   });
 
