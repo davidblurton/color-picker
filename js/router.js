@@ -3,10 +3,8 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/picker/SliderView',
-  'models/colour/ColourModel',
-  'views/picker/ColourTextboxView'
-], function ($, _, Backbone, SliderView, ColourModel, ColourTextboxView) {
+  'views/app/AppView'
+], function ($, _, Backbone, AppView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -20,32 +18,8 @@ define([
     var app_router = new AppRouter();
 
     app_router.on('route:defaultAction', function (actions) {
-      var colourModel = new ColourModel();
-      var redSliderView = new SliderView({
-        model: colourModel,
-        colour: "red"
-      });
-      redSliderView.render().$el.appendTo('#page');
-
-      var blueSliderView = new SliderView({
-        model: colourModel,
-        colour: "blue"
-      });
-      blueSliderView.render().$el.appendTo('#page');
-
-      var redTextbox = new ColourTextboxView({
-        model: colourModel,
-        colour: "red"
-      });
-
-      var blueTextbox = new ColourTextboxView({
-        model: colourModel,
-        colour: "blue"
-      });
-
-      redTextbox.render().$el.appendTo('#colourTextboxes');
-      blueTextbox.render().$el.appendTo('#colourTextboxes');
-
+      var app = new AppView();
+      app.render();
     });
 
     Backbone.history.start();
