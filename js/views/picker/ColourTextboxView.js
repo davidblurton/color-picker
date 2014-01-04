@@ -5,14 +5,14 @@ define([
 ], function ($, _, Backbone) {
 
   var ColourTextboxView = Backbone.View.extend({
+
     tagName: "input",
 
-    id: function(){
-      return this.colour + '-input';
-    },
+    className: "rgb-input",
 
     attributes: {
-      "type": "text"
+      "type": "text",
+      "maxlength": "3"
     },
 
     initialize: function (options) {

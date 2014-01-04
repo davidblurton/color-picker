@@ -1,4 +1,3 @@
-// Filename: router.js
 define([
   'jquery',
   'underscore',
@@ -8,8 +7,7 @@ define([
 
   var AppRouter = Backbone.Router.extend({
     routes: {
-      // Default
-      '*actions': 'defaultAction'
+      '': 'index', 
     }
   });
 
@@ -17,14 +15,21 @@ define([
 
     var app_router = new AppRouter();
 
-    app_router.on('route:defaultAction', function (actions) {
+    app_router.on('route:index', function () {
+
+      console.log("We have loaded the home route.");
+
       var app = new AppView();
       app.render();
+
     });
 
+    // route the initial URL
     Backbone.history.start();
   };
+
   return {
     initialize: initialize
   };
+
 });

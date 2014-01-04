@@ -1,14 +1,14 @@
 define([
   'jquery',
   'underscore',
-  'backbone',
-  'text!templates/picker/sliderTemplate.html'
-], function ($, _, Backbone, homeTemplate) {
+  'backbone'
+], function ($, _, Backbone) {
 
   var SliderView = Backbone.View.extend({
+    
     tagName: "input",
 
-    id: this.colour + "-slider",
+    className: "rgb-slider",
 
     attributes: {
       "min": 0,
@@ -18,19 +18,19 @@ define([
 
     initialize: function (options) {
       this.colour = options.colour;
-      
-      // set slider initial value to model default
       this.$el.attr("value", this.model.get(this.colour));
+      console.log("Initialized Sliderview for " + this.colour);
     },
 
     events: {
       "change": "setValue"
     },
 
-    setValue: function (e) {
+    setValue: function(e) {
       this.model.set(this.colour, e.target.value);
-    }
-  });
+      console.log(this.model.toJSON());
+    },
 
+  });
   return SliderView;
 });
