@@ -4,7 +4,7 @@ define([
   'backbone'
 ], function ($, _, Backbone) {
 
-  var SwatchTextboxView = Backbone.View.extend({
+  var CurrentColourTextView = Backbone.View.extend({
 
     className: "swatch-text",
 
@@ -32,9 +32,8 @@ define([
         }
         return hexValue;
       }
-      
     }
   });
   
-  return SwatchTextboxView;
+  return CurrentColourTextView;
 });

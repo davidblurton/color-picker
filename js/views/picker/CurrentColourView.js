@@ -4,17 +4,19 @@ define([
   'backbone'
 ], function ($, _, Backbone) {
 
-  var SwatchView = Backbone.View.extend({
+  var CurrentColourView = Backbone.View.extend({
 
-    className: "swatch",
+    className: "current-colour",
 
-    initialize: function () {
+    initialize: function (options) {
+      this.swatches = options.swatches;
       this.listenTo(this.model, "change", this.render);
     },
 
     events: {
       "mousemove": "updateColorOnMove",
-      "mousewheel": "updateColorOnWheel"
+      "mousewheel": "updateColorOnWheel",
+      "click": "addColor"
     },
 
     render: function () {
@@ -32,11 +34,11 @@ define([
     updateColorOnWheel: function () {
       var scrollOffset, scaleFactor = 0;
 
-      scrollOffset = window.scrollY;
-      scaleFactor = scrollOffset / this.$el.height() * 255 * 2;
+      scrollOffset = $("#container").scrollTop();
+      scaleFactor = scrollOffset / (this.$el.height() - $("#container").height()) * 255;
 
       if (scaleFactor >= 0 && scaleFactor <= 255) {
-        this.model.set('red', Math.floor(scaleFactor));
+        this.model.set('red', Math.round(scaleFactor));
       }
     },
 
@@ -49,8 +51,13 @@ define([
 
       this.model.set('green', Math.floor(left));
       this.model.set('blue', Math.floor(top));
+    },
+
+    addColor: function() {
+      var currentColour = this.model.clone();
+      this.swatches.add(currentColour);
     }
   });
 
-  return SwatchView;
+  return CurrentColourView;
 });

@@ -1,4 +1,4 @@
-html, body{
+html, body, #app-view {
   height: 100%;
 }
 
@@ -6,23 +6,31 @@ body {
   margin: 0;
 }
 
-#app-view {
-  height: 100%; 
+#currentColourContainer {
+  height: 80%;
+  overflow-y:auto;
+  line-height: 100%;
+  text-align:center;
 }
 
-.swatch {
+.swatches {
+  height: 20%;
   width: 100%;
-  height: 200%;
-  display: block;
+  display: table;
+  table-layout:fixed;
+}
+
+.mini-swatch {
+  height: 100%;
+  width: 100%;
+  display: table-cell;
+}
+
+.current-colour {
+  height: 4000px;
 }
 
 .swatch-text {
-  width: 140px;
-  height: 100px;
-  text-align: left;
-  position: fixed;
-  top: 50%;
-  left: 50%;
   font-size: 24px;
   font-family: "helvetica neue";
   font-weight: 600;

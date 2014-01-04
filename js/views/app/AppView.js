@@ -3,28 +3,38 @@ define([
   'underscore',
   'backbone',
   'models/colour/ColourModel',
-  'views/picker/SwatchView',
-  'views/picker/SwatchTextboxView'
-], function ($, _, Backbone, ColourModel, SwatchView, SwatchTextboxView) {
+  'views/picker/CurrentColourView',
+  'views/picker/CurrentColourTextView',
+  'collections/SwatchCollection',
+  'views/picker/SwatchesView'
+], function ($, _, Backbone, ColourModel, CurrentColourView, CurrentColourTextView, SwatchCollection, SwatchesView) {
 
   var AppView = Backbone.View.extend({
 
     render: function () {
 
       var target = $("#app-view");
+      var container = $("#currentColourContainer");
 
       var colourModel = new ColourModel();
 
-      var swatchView = new SwatchView({
+      var swatchCollection = new SwatchCollection(); 
+
+      var currentColourView = new CurrentColourView({
+        model: colourModel,
+        swatches: swatchCollection
+      });
+      currentColourView.render().$el.appendTo(container);
+
+      var currentColourTextView = new CurrentColourTextView({
         model: colourModel
       });
-      swatchView.render().$el.appendTo(target);
+      currentColourTextView.render().$el.appendTo(container);
 
-      var swatchTextboxView = new SwatchTextboxView({
-        model: colourModel
+      var swatchesView = new SwatchesView({
+        swatches: swatchCollection
       });
-      swatchTextboxView.render().$el.appendTo(target);
-
+      swatchesView.render().$el.appendTo(target);
     }
   });
 
