@@ -1,35 +1,39 @@
 define([
   'jquery',
   'underscore',
-  'backbone'
-], function ($, _, Backbone) {
+  'backbone',
+  'views/picker/SwatchView'
+], function ($, _, Backbone, SwatchView) {
 
   var SwatchesView = Backbone.View.extend({
 
-    className: "swatches",
+    className: "swatchesContainer",
 
     initialize: function (options) {
       this.swatches = options.swatches;
-      this.listenTo(this.swatches, "add", this.render);
+      this.listenTo(this.swatches, "add", this.add);
+      this.listenTo(this.swatches, "remove", this.remove);
+    },
+    
+    events: {
+      "click .swatch" : "remove"
     },
 
     render: function () {
       console.log("added a model");
-
-      if (this.swatches.length) {
-        var model = this.swatches.at(this.swatches.length - 1);
-
-        var redValue = model.get('red');
-        var greenValue = model.get('green');
-        var blueValue = model.get('blue');
-        
-        var colourBlock = $('<div class="mini-swatch"></div>');
-        colourBlock.css('background-color', 'rgb(' + redValue + ',' + greenValue + ',' + blueValue + ')');
-        
-        this.$el.append(colourBlock);
-      }
-      
       return this;
+    },
+
+    add: function (model) {
+      var swatchView = new SwatchView({
+        model: model
+      });
+
+      this.$el.append(swatchView.render().$el);
+    },
+
+    remove: function (e) {
+      $(e.target).remove();
     },
 
     toHexString: function (red, green, blue) {
