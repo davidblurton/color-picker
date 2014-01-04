@@ -16,19 +16,14 @@ body {
   display: block;
 }
 
-#colorString {
+.swatch-text {
   width: 140px;
   height: 100px;
   text-align: left;
   position: fixed;
   top: 50%;
   left: 50%;
-  
   font-size: 24px;
   font-family: "helvetica neue";
   font-weight: 600;
 }
-
-
-
-

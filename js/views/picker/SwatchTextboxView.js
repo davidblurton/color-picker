@@ -4,53 +4,37 @@ define([
   'backbone'
 ], function ($, _, Backbone) {
 
-  var SwatchView = Backbone.View.extend({
+  var SwatchTextboxView = Backbone.View.extend({
 
-    className: "swatch",
+    className: "swatch-text",
 
     initialize: function () {
       this.listenTo(this.model, "change", this.render);
-    },
-
-    events: {
-      "mousemove": "updateColorOnMove",
-      "mousewheel": "updateColorOnWheel"
     },
 
     render: function () {
       var redValue = this.model.get('red');
       var greenValue = this.model.get('green');
       var blueValue = this.model.get('blue');
-      this.$el.css('background-color', 'rgb(' + redValue + ',' + greenValue + ',' + blueValue + ')');
+      
+      this.$el.text(this.toHexString(redValue, greenValue, blueValue));
       return this;
     },
 
-    updateColorOnMove: function (e) {
-      this.updateColor(e.pageX, e.pageY);
-    },
+    toHexString: function (red, green, blue) {
 
-    updateColorOnWheel: function () {
-      var scrollOffset, scaleFactor = 0;
+      return "#" + convertToHex(red) + convertToHex(green) + convertToHex(blue);
 
-      scrollOffset = window.scrollY;
-      scaleFactor = scrollOffset / this.$el.height() * 255 * 2;
-
-      if (scaleFactor >= 0 && scaleFactor <= 255) {
-        this.model.set('red', Math.floor(scaleFactor));
+      function convertToHex(value) {
+        var hexValue = value.toString(16);
+        if (hexValue.length < 2) {
+          return "0" + hexValue;
+        }
+        return hexValue;
       }
-    },
-
-    updateColor: function (x, y) {
-      var sl = this.$el;
-      var left, top = 0;
       
-      left = (x - sl.offset().left) / sl.width() * 255;
-      top = (y - sl.offset().top) / sl.height() * 255;
-
-      this.model.set('green', Math.floor(left));
-      this.model.set('blue', Math.floor(top));
     }
   });
-
-  return SwatchView;
+  
+  return SwatchTextboxView;
 });

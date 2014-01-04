@@ -2,23 +2,29 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'views/picker/SliderView',
   'models/colour/ColourModel',
-  'views/picker/ColourTextboxView',
-  'views/picker/SwatchView'
-], function ($, _, Backbone, SliderView, ColourModel, ColourTextboxView, SwatchView) {
+  'views/picker/SwatchView',
+  'views/picker/SwatchTextboxView'
+], function ($, _, Backbone, ColourModel, SwatchView, SwatchTextboxView) {
 
   var AppView = Backbone.View.extend({
+
     render: function () {
 
       var target = $("#app-view");
 
       var colourModel = new ColourModel();
 
-       swatch = new SwatchView({
+      var swatchView = new SwatchView({
         model: colourModel
       });
-      swatch.render().$el.appendTo(target);
+      swatchView.render().$el.appendTo(target);
+
+      var swatchTextboxView = new SwatchTextboxView({
+        model: colourModel
+      });
+      swatchTextboxView.render().$el.appendTo(target);
+
     }
   });
 
