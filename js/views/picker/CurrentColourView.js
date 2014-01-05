@@ -34,8 +34,8 @@ define([
     updateColorOnWheel: function () {
       var scrollOffset, scaleFactor = 0;
 
-      scrollOffset = $("#container").scrollTop();
-      scaleFactor = scrollOffset / (this.$el.height() - $("#container").height()) * 255;
+      scrollOffset = $("#currentColourContainer").scrollTop();
+      scaleFactor = scrollOffset / (this.$el.height() - $("#currentColourContainer").height()) * 255;
 
       if (scaleFactor >= 0 && scaleFactor <= 255) {
         this.model.set('red', Math.round(scaleFactor));
