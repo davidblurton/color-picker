@@ -6,7 +6,7 @@ define([
 
   var CurrentColourTextView = Backbone.View.extend({
 
-    className: "swatch-text",
+    className: "swatch-text vertical-align-center horizontal-align-center",
 
     initialize: function () {
       this.listenTo(this.model, "change", this.render);
@@ -16,7 +16,7 @@ define([
       var redValue = this.model.get('red');
       var greenValue = this.model.get('green');
       var blueValue = this.model.get('blue');
-      
+
       this.$el.text(this.toHexString(redValue, greenValue, blueValue));
       return this;
     },
@@ -34,6 +34,6 @@ define([
       }
     }
   });
-  
+
   return CurrentColourTextView;
 });

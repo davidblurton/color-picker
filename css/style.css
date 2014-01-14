@@ -36,3 +36,16 @@ body {
   font-family: "helvetica neue";
   font-weight: 600;
 }
+
+.vertical-align-center {
+  position: fixed;
+  top: 25%;
+  -webkit-transform: translateY(-25%);
+  transform: translateY(-25%);
+}
+
+.horizontal-align-center {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
